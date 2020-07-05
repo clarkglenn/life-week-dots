@@ -113,12 +113,16 @@
         padding: 5px;
       }
 
-      #dot-container div.fifty::after  {
-          content: "50 years";
+      #dot-container div.fifteen::after  {
+          content: "15 years";
       }
 
       #dot-container div.twenty-five::after  {
           content: "25 years";
+      }
+
+      #dot-container div.fifty::after  {
+          content: "50 years";
       }
 
       #dot-container div.seventy-five::after  {
@@ -218,6 +222,10 @@
             div.appendChild(ageDisplay);
           }else{
             div.className = "lived";
+          }
+
+          if(i !== livedWeekCount && i == 15 * 52){
+            div.className = "marker-week fifteen";
           }
 
           if(i !== livedWeekCount && i == 25 * 52){
