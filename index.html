@@ -161,11 +161,12 @@
         weeksLivedElement.textContent = livedWeekCount;
 
         var i = 1;
+        var ageDisplay = null;
         while (i <= livedWeekCount) {
           var div = document.createElement("div");
           if(i === livedWeekCount){
             div.className = "current-week";
-            var ageDisplay = document.createElement("div");
+            ageDisplay = document.createElement("div");
             ageDisplay.id = "scroll-here"
             ageDisplay.textContent = "Your age: " + age;
 
@@ -187,8 +188,7 @@
           renderRestOfLife(age);
         }
 
-        var scroll = document.getElementById("scroll-here");
-        scroll.scrollIntoView();
+        ageDisplay.scrollIntoView();
       }
 
       function renderRestOfLife(yearsLived) {
