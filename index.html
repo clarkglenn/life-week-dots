@@ -52,6 +52,7 @@
 
       #dot-container div.lived {
         background: #9b4dca;
+        border: 1px solid #9b4dca;
         animation-name: example;
         animation-duration: 0.5s;
       }
@@ -65,13 +66,13 @@
         z-index: 1000;
       }
 
-      #dot-container div.current-week::after {
-        content: "36 years";
+      #dot-container div.current-week div#scroll-here {
         position: absolute;
         font-size: 14px;
         left: -5px;
         top: -45px;
         background-color: #9b4dca;
+        border: 1px solid #9b4dca;
         color: white;
         text-align: center;
         line-height: 1em;
@@ -84,7 +85,7 @@
         position: absolute;
         font-size: 14px;
         left: -1px;
-        top: -13px;
+        top: -14px;
         /* background-color: #606c76; */
         color: #9b4dca;
         text-align: center;
@@ -162,8 +163,17 @@
         var i = 1;
         while (i <= livedWeekCount) {
           var div = document.createElement("div");
-          div.className = i == livedWeekCount ? "current-week" : "lived";
-          div.style = i == livedWeekCount ? "content: 'testr'" : "";
+          if(i === livedWeekCount){
+            div.className = "current-week";
+            var ageDisplay = document.createElement("div");
+            ageDisplay.id = "scroll-here"
+            ageDisplay.textContent = "Your age: " + age;
+
+            div.appendChild(ageDisplay);
+          }else{
+            div.className = "lived";
+          }
+          
           livedElement.appendChild(div);
           i++;
         }
@@ -176,6 +186,9 @@
           weeksleftElement.textContent = leftToLiveWeekCount;
           renderRestOfLife(age);
         }
+
+        var scroll = document.getElementById("scroll-here");
+        scroll.scrollIntoView();
       }
 
       function renderRestOfLife(yearsLived) {
