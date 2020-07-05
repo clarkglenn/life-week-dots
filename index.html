@@ -28,10 +28,14 @@
         padding-top:30px;
       }
 
-      /* .container {
-        align-items: center;
-        justify-content: center;
-      } */
+      .stats {
+        list-style-type: none;
+        display: flex;
+      }
+
+      .stats li{
+        margin-right: 14px;
+      }
 
       #dot-container {
         display: flex;
@@ -156,9 +160,11 @@
   </head>
   <body>
     <div class="container">
+    <div class="row">
+      <h2>Visualize your age in weeks</h2>
+    </div>
       <div class="row">
         <div class="column">
-          <div class="column">
             <div class="row">
               <div class="colum" style="margin-right:10px;">
                 <input type="number" placeholder="How old are you?" id="input-age" />
@@ -171,7 +177,6 @@
                   onclick="renderLivedLife()"
                 />
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -182,10 +187,11 @@
       </div>
       <div class="row">
         <div class="column">
-          <h5><i class="fa fa-hourglass" aria-hidden="true"></i> <span id="weeks-left"></span> weeks left to live</h5>
-        </div>
-        <div class="column">
-          <h5><i class="fa fa-hourglass-end" aria-hidden="true"></i> <span id="weeks-lived"></span> weeks lived</h5>  
+          <ul class="stats">
+            <li>If you live until you are 88 years old you have</li>
+            <li><i class="fa fa-hourglass-start" aria-hidden="true"></i> <span id="weeks-left"></span> weeks left to live</p></li>
+            <li><i class="fa fa-hourglass-end" aria-hidden="true"></i> <span id="weeks-lived"></span> weeks lived</li>
+          </ul>
         </div>
       </div>
 
