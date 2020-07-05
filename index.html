@@ -55,9 +55,7 @@
         animation-name: example;
         animation-duration: 0.5s;
       }
-
-
-
+      
       #dot-container div.current-week {
         width: 2px;
         height: 2px;
@@ -114,14 +112,13 @@
           <div class="column">
             <div class="row">
               <div class="colum" style="margin-right:10px;">
-                <label for="nameField">Your age:</label>
-                <input type="number" placeholder="36" id="input-age" />
+                <input type="number" placeholder="How old are you?" id="input-age" />
               </div>
               <div class="colum" style="align-items: flex-end;display: flex;">
                 <input
                   class="button-primary"
                   type="submit"
-                  value="Display"
+                  value="Calculate week life"
                   onclick="renderLivedLife()"
                 />
               </div>
