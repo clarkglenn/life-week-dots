@@ -161,22 +161,15 @@
   <body>
     <div class="container">
     <div class="row">
-      <h2>Age visualizer</h2>
+      <h2>Your life in weeks</h2>
     </div>
       <div class="row">
         <div class="column">
             <div class="row">
               <div class="colum" style="margin-right:10px;">
-                <input type="number" placeholder="How old are you?" id="input-age" />
+                <input type="number" placeholder="How old are you?" id="input-age" onchange="renderLivedLife()"/>
               </div>
-              <div class="colum" style="align-items: flex-end;display: flex;">
-                <input
-                  class="button-primary"
-                  type="submit"
-                  value="Calculate week life"
-                  onclick="renderLivedLife()"
-                />
-              </div>
+
           </div>
         </div>
       </div>
