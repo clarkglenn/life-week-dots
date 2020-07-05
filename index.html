@@ -40,7 +40,7 @@
 
       #dot-container div {
         padding: 0px;
-        margin: 2px;
+        margin: 1px;
         border: 1px solid #888a8b;
         position: relative;
       }
@@ -58,9 +58,6 @@
       }
       
       #dot-container div.current-week {
-        width: 1px;
-        height: 1px;
-        margin: 2px;
         background: #9b4dca;
         border: 1px solid #9b4dca;
         z-index: 1000;
@@ -84,8 +81,8 @@
         content: "↲";
         position: absolute;
         font-size: 14px;
-        left: -1px;
-        top: -14px;
+        left: -5px;
+        top: -16px;
         /* background-color: #606c76; */
         color: #9b4dca;
         text-align: center;
@@ -106,7 +103,7 @@
         top: -45px;
         background-color: #606c76;
         border: 1px solid #606c76;
-        color: rgb(252, 232, 232);
+        color: #FFF;
         text-align: center;
         line-height: 1em;
         font-weight: bold;
@@ -133,8 +130,8 @@
         content: "↲";
         position: absolute;
         font-size: 14px;
-        left: -1px;
-        top: -14px;
+        left: -5px;
+        top: -16px;
         /* background-color: #606c76; */
         color: #606c76;
         text-align: center;
@@ -144,11 +141,11 @@
       }
 
       #dot-container div.last-week-of-life::after {
-        content: "↰ 100 years";
+        content: "↰ 88 years";
         position: absolute;
         font-size: 14px;
-        left: -5px;
-        top: 0px;
+        left: -3px;
+        top: -3px;
         text-align: center;
         line-height: 1em;
         font-weight: bold;
@@ -189,7 +186,7 @@
       </div>
 
     <script type="text/javascript">
-      const maxAge = 100;
+      const maxAge = 88;
       function init() {
         renderRestOfLife(0);
       }
@@ -197,7 +194,7 @@
       function renderLivedLife() {
         var age = parseInt(document.getElementById("input-age").value);
         if (!age) age = 0;
-        if (age > 100) return;
+        if (age > maxAge) return;
 
         var livedElement = document.getElementById("dot-container");
 
