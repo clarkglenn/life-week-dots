@@ -1,0 +1,204 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Clarkglenn" />
+    <meta name="description" content="" />
+    <title>Life left</title>
+    <!-- <link rel="icon" href="https://milligram.io/images/icon.png" /> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.css"
+    />
+    <style>
+      body {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+
+      /* .container {
+        align-items: center;
+        justify-content: center;
+      } */
+
+      #dot-container {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 5px;
+        margin-bottom: 100px;
+      }
+
+      #dot-container div {
+        padding: 2px;
+        margin: 2px;
+        border: 1px solid #606c76;
+        position: relative;
+      }
+
+      @keyframes example {
+        from {background-color: white;}
+        to {background-color: #9b4dca;}
+      }
+
+      #dot-container div.lived {
+        background: #9b4dca;
+        animation-name: example;
+        animation-duration: 0.5s;
+      }
+
+
+
+      #dot-container div.current-week {
+        width: 2px;
+        height: 2px;
+        margin: 2px;
+        background: #9b4dca;
+        border: 1px solid #9b4dca;
+        z-index: 1000;
+      }
+
+      #dot-container div.current-week::after {
+        content: "36 years";
+        position: absolute;
+        font-size: 14px;
+        left: -5px;
+        top: -45px;
+        background-color: #9b4dca;
+        color: white;
+        text-align: center;
+        line-height: 1em;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      #dot-container div.current-week::before {
+        content: "↲";
+        position: absolute;
+        font-size: 14px;
+        left: -1px;
+        top: -13px;
+        /* background-color: #606c76; */
+        color: #9b4dca;
+        text-align: center;
+        line-height: 1em;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      #dot-container div.last-week-of-life::after {
+        content: "↰ 100 years";
+        position: absolute;
+        font-size: 14px;
+        left: -5px;
+        top: 0px;
+        text-align: center;
+        line-height: 1em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <div class="column">
+            <div class="row">
+              <div class="colum" style="margin-right:10px;">
+                <label for="nameField">Your age:</label>
+                <input type="number" placeholder="36" id="input-age" />
+              </div>
+              <div class="colum" style="align-items: flex-end;display: flex;">
+                <input
+                  class="button-primary"
+                  type="submit"
+                  value="Display"
+                  onclick="renderLivedLife()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div id="dot-container"></div>
+        </div>
+      </div>
+      <div class="row" style="display: none;">
+        <div class="column">
+            <h4>Weeks left: <span id="weeks-left"></span></h4>
+            <h4>Weeks lived: <span id="weeks-lived"></span></h4>
+        </div>
+      </div>
+
+    <script type="text/javascript">
+      const maxAge = 100;
+      function init() {
+        renderRestOfLife(0);
+      }
+
+      function renderLivedLife() {
+        var age = parseInt(document.getElementById("input-age").value);
+        if (!age) age = 0;
+        if (age > 100) return;
+
+        var livedElement = document.getElementById("dot-container");
+
+        var elements = livedElement.getElementsByTagName("div");
+        while (livedElement.firstChild)
+          livedElement.removeChild(livedElement.firstChild);
+
+        var livedWeekCount = age * 52;
+        var weeksLivedElement = document.getElementById("weeks-lived");
+        weeksLivedElement.textContent = livedWeekCount;
+
+        var i = 1;
+        while (i <= livedWeekCount) {
+          var div = document.createElement("div");
+          div.className = i == livedWeekCount ? "current-week" : "lived";
+          div.style = i == livedWeekCount ? "content: 'testr'" : "";
+          livedElement.appendChild(div);
+          i++;
+        }
+
+        var yearsLeft = maxAge - age;
+        var leftToLiveWeekCount = (maxAge - age) * 52;
+
+        if (yearsLeft > 0) {
+          var weeksleftElement = document.getElementById("weeks-left");
+          weeksleftElement.textContent = leftToLiveWeekCount;
+          renderRestOfLife(age);
+        }
+      }
+
+      function renderRestOfLife(yearsLived) {
+        var lifeContainer = document.getElementById("dot-container");
+        var weeksToLive = (maxAge - yearsLived) * 52;
+        var weeksleftElement = document.getElementById("weeks-left");
+        weeksleftElement.textContent = weeksToLive;
+
+        var i = 0;
+        while (i <= weeksToLive) {
+          var div = document.createElement("div");
+          lifeContainer.appendChild(div);
+          i++;
+        }
+
+        lifeContainer.lastChild.className = "last-week-of-life";
+      }
+
+      document.addEventListener("DOMContentLoaded", event => {
+        init(30);
+      });
+    </script>
+  </body>
+</html>
