@@ -94,6 +94,51 @@
         padding: 5px;
       }
 
+      #dot-container div.marker-week{
+        background-color:#606c76;
+      }
+
+      #dot-container div.marker-week::after {
+        content: "";
+        position: absolute;
+        font-size: 14px;
+        left: -5px;
+        top: -45px;
+        background-color: #606c76;
+        border: 1px solid #606c76;
+        color: rgb(252, 232, 232);
+        text-align: center;
+        line-height: 1em;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      #dot-container div.fifty::after  {
+          content: "50 years";
+      }
+
+      #dot-container div.twenty-five::after  {
+          content: "25 years";
+      }
+
+      #dot-container div.seventy-five::after  {
+          content: "75 years";
+      }
+
+      #dot-container div.marker-week::before {
+        content: "↲";
+        position: absolute;
+        font-size: 14px;
+        left: -1px;
+        top: -14px;
+        /* background-color: #606c76; */
+        color: #606c76;
+        text-align: center;
+        line-height: 1em;
+        font-weight: bold;
+        padding: 5px;
+      }
+
       #dot-container div.last-week-of-life::after {
         content: "↰ 100 years";
         position: absolute;
@@ -168,11 +213,21 @@
             div.className = "current-week";
             ageDisplay = document.createElement("div");
             ageDisplay.id = "scroll-here"
-            ageDisplay.textContent = "Your age: " + age;
+            ageDisplay.textContent = age + " years";
 
             div.appendChild(ageDisplay);
           }else{
             div.className = "lived";
+          }
+
+          if(i !== livedWeekCount && i == 25 * 52){
+            div.className = "marker-week twenty-five";
+          }
+          if(i !== livedWeekCount && i == 50 * 52){
+            div.className = "marker-week fifty";
+          }
+          if(i !== livedWeekCount && i == 75 * 52){
+            div.className = "marker-week seventy-five";
           }
           
           livedElement.appendChild(div);
